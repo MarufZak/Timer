@@ -275,17 +275,32 @@ body {
     margin-bottom: 10px;
 }
 .stopwatch__btn_second {
-padding: 10px 15px;
-background: #fff;
-border-radius: 30px;
-border: none;
-font-size: 18px;
-text-transform: uppercase;
-color: #191d22;
-cursor: pointer;
-outline: none;
-display: none;
+    padding: 10px 15px;
+    background: #fff;
+    border-radius: 30px;
+    border: none;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #191d22;
+    cursor: pointer;
+    outline: none;
+    display: none;
+    margin-bottom: 10px;
 }
+
+.stopwatch__btn_third {
+    padding: 10px 15px;
+    background: #fff;
+    border-radius: 30px;
+    border: none;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #191d22;
+    cursor: pointer;
+    outline: none;
+    display: none;
+}
+
 /* @keyframes opacity {
     0% {
         opacity: 1;

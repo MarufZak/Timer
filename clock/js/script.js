@@ -2,6 +2,8 @@
 // document.querySelector("селектор") - подключается к одному тегу по имени селектора
 // возвращается тег в виде обьекта
 // console.dir(document.querySelector(".s"));
+alert('Round - вывод в консоль');
+
 
 const sec = document.querySelector(".s"); // подключаемя к секундной стрелке
 const min = document.querySelector(".m"); // подключаемя к минутной стрелке
@@ -81,6 +83,8 @@ let swMin = document.querySelector('.stopwatch__minutes');
 let swHour = document.querySelector('.stopwatch__hours');
 let round = document.querySelector('.tabsLink__span');
 let next = document.querySelector('.stopwatch__btn_second');
+let roundBtn = document.querySelector('.stopwatch__btn_third');
+let done = document.querySelector('.done');
 
 function time() {
     ++swSec.innerHTML
@@ -100,18 +104,22 @@ function time() {
 
 }
 
+let num = 0
 btn.addEventListener('click',function () {  
     if (btn.innerHTML == 'start') {
         btn.onclick = function () {  
             btn.innerHTML = 'stop'
             round.classList.add('active')
+            roundBtn.style.display = 'inline-block'
+            roundBtn.onclick = function () {  
+                console.log(`#${++num} - [${swHour.innerHTML} : ${swMin.innerHTML} : ${swSec.innerHTML}]`);
+            }
             setTimeout(() => {
                 time()
             }, 1000);
         }
-            
-        
     }
+    
     if (btn.innerHTML == 'stop') {
         btn.onclick = function () {  
         btn.innerHTML = 'clear'
@@ -121,6 +129,7 @@ btn.addEventListener('click',function () {
             setTimeout(() => {
                 time()
             }, 500);
+            
             btn.innerHTML = 'stop'
             next.style.display = 'none'
             round.classList.remove('active_clear')
@@ -130,7 +139,8 @@ btn.addEventListener('click',function () {
     if (btn.innerHTML == 'clear') {
         btn.onclick = function () {
         round.classList.remove('active_clear')  
-        round.classList.remove('active')  
+        round.classList.remove('active')
+        roundBtn.style.display = 'none'
         btn.innerHTML = 'start'
         swSec.innerHTML = 0;
         swMin.innerHTML = 0;
@@ -139,23 +149,5 @@ btn.addEventListener('click',function () {
         }
     }
 
+
 })
-/* btn.addEventListener('click',function () {  
-    btn.innerHTML = 'stop'
-    round.classList.add('active')
-    time()
-    if (btn.innerHTML = 'stop') {
-        btn.addEventListener('click',function () {  
-            btn.innerHTML = 'clear'
-            swSec.innerHTML -= 1;
-            btn.addEventListener('click',function () {  
-                swSec.innerHTML = 0;
-                swMin.innerHTML = 0;
-                swHour.innerHTML = 0;
-            })
-            round.classList.add('active_clear')
-        })
-    }
-
-
-}) */
