@@ -52,7 +52,7 @@ const links = document.querySelectorAll('.tabsItem'); // подключаемс�
 const tabs = document.querySelectorAll('.tabsContentItem'); // подключаемся к табам
 // console.log(links);
 for (let i = 0; i < links.length; i++) {
-    console.dir(links[i]);
+    // console.dir(links[i]);
     // HTMLelement.addEventListener("событие", функция) -привязывает функию(слушателя) с событием;
     links[i].addEventListener('click',function (event) { 
         event.preventDefault(); // метод отменяет действие по умолочанию 
@@ -80,10 +80,7 @@ let swSec = document.querySelector('.stopwatch__seconds');
 let swMin = document.querySelector('.stopwatch__minutes');
 let swHour = document.querySelector('.stopwatch__hours');
 let round = document.querySelector('.tabsLink__span');
-
-function nothing() {
-    
-}
+let next = document.querySelector('.stopwatch__btn_second');
 
 function time() {
     ++swSec.innerHTML
@@ -98,20 +95,59 @@ function time() {
     setTimeout(() => {
         if (btn.innerHTML == 'stop') {
             time()
-        } else if (btn.innerHTML == 'clean') {
-            console.log('hi');
         }
     }, 1000);
 
 }
 
 btn.addEventListener('click',function () {  
+    if (btn.innerHTML == 'start') {
+        btn.onclick = function () {  
+            btn.innerHTML = 'stop'
+            round.classList.add('active')
+            setTimeout(() => {
+                time()
+            }, 1000);
+        }
+            
+        
+    }
+    if (btn.innerHTML == 'stop') {
+        btn.onclick = function () {  
+        btn.innerHTML = 'clear'
+        round.classList.add('active_clear')
+        next.style.display = 'inline-block'
+        next.onclick = function () {
+            setTimeout(() => {
+                time()
+            }, 500);
+            btn.innerHTML = 'stop'
+            next.style.display = 'none'
+            round.classList.remove('active_clear')
+        }
+        }
+    }
+    if (btn.innerHTML == 'clear') {
+        btn.onclick = function () {
+        round.classList.remove('active_clear')  
+        round.classList.remove('active')  
+        btn.innerHTML = 'start'
+        swSec.innerHTML = 0;
+        swMin.innerHTML = 0;
+        swHour.innerHTML = 0;
+        next.style.display = 'none'
+        }
+    }
+
+})
+/* btn.addEventListener('click',function () {  
     btn.innerHTML = 'stop'
     round.classList.add('active')
     time()
     if (btn.innerHTML = 'stop') {
         btn.addEventListener('click',function () {  
             btn.innerHTML = 'clear'
+            swSec.innerHTML -= 1;
             btn.addEventListener('click',function () {  
                 swSec.innerHTML = 0;
                 swMin.innerHTML = 0;
@@ -122,4 +158,4 @@ btn.addEventListener('click',function () {
     }
 
 
-})
+}) */
